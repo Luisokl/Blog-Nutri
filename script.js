@@ -6,14 +6,37 @@ let posts = [];
 
 function appNutri() {
 
-    fetch("https://sujeitoprogramador.com/rn-api/?api=posts")
+    fetch('https://sujeitoprogramador.com/rn-api/?api=posts')
     .then((response) => response.json())
     .then((responseJson) => {
-        console.log(responseJson)
-    })
-    .catch(() => {
-        alert("Deu algo errado!")
-    });
+        posts = responseJson;
 
-    console.log(response);
+        posts.map((item) => {
+            let liElement = document.createElement('li');
+            let titleElement = document.createElement('h2');
+            let imgElement = document.createElement('img');
+            let descriptionElement = document.createElement('p');
+
+            let textTitle = document.createTextNode(item.titulo);
+            titleElement.appendChild(textTitle);
+            liElement.appendChild(titleElement);
+
+            imgElement.src = item.capa;
+            liElement.appendChild(imgElement);
+
+            let description = document.createTextNode(item.subtitulo);
+            descriptionElement.appendChild(description);
+            liElement.appendChild(descriptionElement);
+
+            
+            listElement.appendChild(liElement)
+
+        })
+    })
+
+
 }
+
+
+
+appNutri();
